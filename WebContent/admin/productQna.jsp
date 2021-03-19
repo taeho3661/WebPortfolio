@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원목록</title>
+  <title>문의목록</title>
 </head>
 <style>
   *{
@@ -53,7 +53,7 @@
     color:lavender;
   }
   .section{
-  	margin-top: 20px;
+    margin-top: 20px;
     width: 1100px;
     background-color: lavender;
     height: 800px;
@@ -74,10 +74,11 @@
     margin-top: 30px;
   }
   .table th, .table td{
-    width: 220px;
+    width: 180px;
+    height: 30px;
     text-align: center;
   }
-  #memberListDeleteButton{
+  #productQnaReplyButton{
     width: 80px;
     height: 30px;
 
@@ -87,7 +88,7 @@
     margin-right: 20px;
     border-radius: 10px;
   }
-  #memberListDeleteButton:hover{
+  #productQnaReplyButton:hover{
     color:white; 
     background-color: skyblue;
   }
@@ -98,31 +99,33 @@
 
   <div class="wrap">
     <div class="aside">
-      <a href="memberList.jsp" id="selected">회원 목록</a>
+      <a href="memberList.jsp">회원 목록</a>
       <a href="productList.jsp">상품 목록</a>
       <a href="productAdd.jsp">상품 등록</a>
       <a href="orderList.jsp">주문 목록</a>
-      <a href="productQna.jsp">문의 목록</a>
+      <a href="productQna.jsp" id="selected">문의 목록</a>
     </div>
     <div class="section">
       <div class="sectionTitle">
-        <h1>회원 목록</h1>
+        <h1>문의 목록</h1>
       </div>
       <table class="table">
         <!-- th -->
         <tr>
-          <th>ID</th>
-          <th>이름</th>
-          <th>휴대폰</th>
+          <th>상품명</th>
+          <th>문의제목</th>
+          <th>문의자</th>
+          <th>날짜</th>
           <th></th>
         </tr>
         <!-- tr -->
         <c:forEach var="dto" items="${ list }">
             <tr>
-              <td class="t01">${ dto.news_idx }</td>
-              <td class="t02"><a href="community02_view.do?news_idx=${ dto.news_idx }">${ dto.news_title }</a></td>
+              <td>${ dto.news_idx }</td>
+              <td>${ dto.news_title }</td>
               <td>${ dto.news_date }</td>
-              <td><button id="memberListDeleteButton">삭제</button></td>
+              <td>${ dto.news_date }</td>
+              <td><button id="productQnaReplyButton" onclick="javascript:replyButton();">답변</button></td>
             </tr>
         </c:forEach>
 		
@@ -131,3 +134,10 @@
   </div>
 </body>
 </html>
+
+<script>
+	function replyButton()
+	{
+		window.open("qnaReply.jsp", "새창", "width=780, height=850, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+	}
+</script>

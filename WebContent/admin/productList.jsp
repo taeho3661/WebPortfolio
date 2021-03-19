@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +15,9 @@
     padding: 0;
 
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* 디버깅용 라인 */
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
   a{
     text-decoration: none;
@@ -33,13 +34,23 @@
 
     display: flex;
     flex-direction: column;
+    
   }
   .aside a{
+    border: .5px solid gray;
     width: 180px;
+    height: 50px;
+    line-height: 50px;
+    color:lightslategrey;
+  }
+  .aside a:hover{
+    background-color: #CE6D39;
+    color:lavender;
   }
   #selected{
     /* filter: brightness(20%); */
     background-color: #CE6D39;
+    color:lavender;
   }
   .section{
     margin-top: 20px;
@@ -91,11 +102,11 @@
 
   <div class="wrap">
     <div class="aside">
-      <a href="/WebPortfolio/admin/memberList.jsp">회원 목록</a>
-      <a href="/WebPortfolio/admin/productList.jsp" id="selected">상품 목록</a>
-      <a href="">상품 등록</a>
-      <a href="">주문 목록</a>
-      <a href="">문의 목록</a>
+      <a href="memberList.jsp">회원 목록</a>
+      <a href="productList.jsp" id="selected">상품 목록</a>
+      <a href="productAdd.jsp">상품 등록</a>
+      <a href="orderList.jsp">주문 목록</a>
+      <a href="productQna.jsp">문의 목록</a>
     </div>
     <div class="section">
       <div class="sectionTitle">

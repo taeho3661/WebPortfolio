@@ -14,7 +14,7 @@
     padding: 0;
 
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* 디버깅용 라인 */
     /* border: 1px solid red; */
   }

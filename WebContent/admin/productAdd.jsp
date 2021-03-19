@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원목록</title>
+  <title>상품등록</title>
 </head>
 <style>
   *{
@@ -53,7 +53,7 @@
     color:lavender;
   }
   .section{
-  	margin-top: 20px;
+    margin-top: 20px;
     width: 1100px;
     background-color: lavender;
     height: 800px;
@@ -73,11 +73,35 @@
   .table{
     margin-top: 30px;
   }
-  .table th, .table td{
-    width: 220px;
+  .table td:nth-child(2n-1){
+    width: 160px;
+    height: 50px;
     text-align: center;
+    
+    font-size: 20px;
   }
-  #memberListDeleteButton{
+  .table td:nth-child(2n){
+    padding-left: 10px;
+    width: 500px;
+    text-align: left;
+  }
+  .table td:nth-last-child(){
+    text-align: right;
+  }
+  .inputBox{
+    width: 200px;
+    height: 40px;
+    padding-left: 10px;
+  }
+  #productAddTextarea{
+    resize: none;
+    width: 480px;
+    height: 300px;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+
+  #productAddSubmitButton{
     width: 80px;
     height: 30px;
 
@@ -87,10 +111,11 @@
     margin-right: 20px;
     border-radius: 10px;
   }
-  #memberListDeleteButton:hover{
+  #productAddSubmitButton:hover{
     color:white; 
     background-color: skyblue;
   }
+
 </style>
 <body>
 
@@ -98,34 +123,42 @@
 
   <div class="wrap">
     <div class="aside">
-      <a href="memberList.jsp" id="selected">회원 목록</a>
+      <a href="memberList.jsp">회원 목록</a>
       <a href="productList.jsp">상품 목록</a>
-      <a href="productAdd.jsp">상품 등록</a>
+      <a href="productAdd.jsp" id="selected">상품 등록</a>
       <a href="orderList.jsp">주문 목록</a>
       <a href="productQna.jsp">문의 목록</a>
     </div>
     <div class="section">
       <div class="sectionTitle">
-        <h1>회원 목록</h1>
+        <h1>상품 등록</h1>
       </div>
       <table class="table">
-        <!-- th -->
-        <tr>
-          <th>ID</th>
-          <th>이름</th>
-          <th>휴대폰</th>
-          <th></th>
-        </tr>
-        <!-- tr -->
-        <c:forEach var="dto" items="${ list }">
-            <tr>
-              <td class="t01">${ dto.news_idx }</td>
-              <td class="t02"><a href="community02_view.do?news_idx=${ dto.news_idx }">${ dto.news_title }</a></td>
-              <td>${ dto.news_date }</td>
-              <td><button id="memberListDeleteButton">삭제</button></td>
-            </tr>
-        </c:forEach>
-		
+        <form action="productAdd.do" method="post">
+          <tr>
+            <td>상품명</td>
+            <td><input type="text" name ="product_name" placeholder="상품명을 입력해주세요." class="inputBox"></td>
+          </tr>
+          <tr>
+            <td>판매가</td>
+            <td><input type="text" name ="product_price" placeholder="상품 가격을 입력해주세요." class="inputBox"></td>
+          </tr>
+          <tr>
+            <td>재고</td>
+            <td><input type="text" name ="product_count" placeholder="상품 갯수를 입력해주세요." class="inputBox"></td>
+          </tr>
+          <tr>
+            <td>내용</td>
+            <!-- <td><input type="textarea" name ="product_info" placeholder="세부 내용을 입력해주세요." class="inputBox"></td> -->
+            <td><textarea name ="product_info" placeholder="세부 내용을 입력해주세요." id="productAddTextarea"></textarea></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="text-align: right;">
+              <input type="submit" value="제품등록" id="productAddSubmitButton">
+            </td>
+          </tr>		
+        </form>
       </table>
     </div>
   </div>
