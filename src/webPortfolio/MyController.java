@@ -41,7 +41,8 @@ public class MyController extends HttpServlet{
 		System.out.println("MyController_command :" + command);
 		if(command.equals("") || command.equals("/"))
 		{
-			response.sendRedirect("/index.jsp");
+//			response.sendRedirect("/index.jsp");
+			response.sendRedirect("/WebPortfolio/admin/memberList.jsp");
 		}
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////
