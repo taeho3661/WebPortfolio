@@ -1,6 +1,7 @@
 package webPortfolio;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.UserDao;
+import dto.UserDto;
+
 
 
 //serialVersionUID아이디값 부여해서 warning막음
@@ -39,10 +44,21 @@ public class MyController extends HttpServlet{
 		
 
 		System.out.println("MyController_command :" + command);
+		
+		//시작페이지 임시설정
 		if(command.equals("") || command.equals("/"))
 		{
 //			response.sendRedirect("/index.jsp");
-			response.sendRedirect("/WebPortfolio/admin/memberList.jsp");
+			response.sendRedirect("/WebPortfolio/admin/memberList.do");
+		}
+		
+		//memberList
+		else if (command.equals("memberList.do"))
+		{
+			ArrayList<UserDto> list = UserDao.list();
+			request.setAttribute("list", list);
+			
+			jspPage = "/admin/memberList.jsp";
 		}
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////

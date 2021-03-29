@@ -123,7 +123,7 @@
 
   <div class="wrap">
     <div class="aside">
-      <a href="memberList.jsp">회원 목록</a>
+      <a href="memberList.do">회원 목록</a>
       <a href="productList.jsp">상품 목록</a>
       <a href="productAdd.jsp" id="selected">상품 등록</a>
       <a href="orderList.jsp">주문 목록</a>

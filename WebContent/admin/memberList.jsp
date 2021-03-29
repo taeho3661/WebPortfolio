@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,7 +100,7 @@
 
   <div class="wrap">
     <div class="aside">
-      <a href="memberList.jsp" id="selected">회원 목록</a>
+      <a href="memberList.do" id="selected">회원 목록</a>
       <a href="productList.jsp">상품 목록</a>
       <a href="productAdd.jsp">상품 등록</a>
       <a href="orderList.jsp">주문 목록</a>
@@ -119,9 +121,9 @@
         <!-- tr -->
         <c:forEach var="dto" items="${ list }">
             <tr>
-              <td class="t01">${ dto.news_idx }</td>
-              <td class="t02"><a href="community02_view.do?news_idx=${ dto.news_idx }">${ dto.news_title }</a></td>
-              <td>${ dto.news_date }</td>
+              <td>${ dto.user_id }</td>
+              <td>${ dto.user_nm }</td>
+              <td>${ dto.phone1 } - ${ dto.phone2 } - ${ dto.phone3 }</td>
               <td><button id="memberListDeleteButton">삭제</button></td>
             </tr>
         </c:forEach>
