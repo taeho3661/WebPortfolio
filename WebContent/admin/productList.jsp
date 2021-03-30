@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@
     box-sizing: border-box;
     /* overflow: hidden; */
     /* 디버깅용 라인 */
-    /* border: 1px solid red; */
+    /* border: 1px solid red; */ 
   }
   a{
     text-decoration: none;
@@ -77,6 +78,9 @@
     width: 160px;
     text-align: center;
   }
+  .table img{
+    width: 80px;
+  }
   #btn1{ 
     border-radius: 5px;
   } 
@@ -84,7 +88,7 @@
     border-radius: 5px;
   }
   #buttons button{
-    border: 1px solid skyblue; 
+    border: 1px solid skyblue;
     color: skyblue; 
     padding: 5px;
     margin: 2px;
@@ -103,10 +107,10 @@
   <div class="wrap">
     <div class="aside">
       <a href="memberList.do">회원 목록</a>
-      <a href="productList.jsp" id="selected">상품 목록</a>
-      <a href="productAdd.jsp">상품 등록</a>
-      <a href="orderList.jsp">주문 목록</a>
-      <a href="productQna.jsp">문의 목록</a>
+      <a href="productList.do" id="selected">상품 목록</a>
+      <a href="productAdd.do">상품 등록</a>
+      <a href="orderList.do">주문 목록</a>
+      <a href="productQna.do">문의 목록</a>
     </div>
     <div class="section">
       <div class="sectionTitle">
@@ -125,12 +129,12 @@
         <!-- tr -->
         <c:forEach var="dto" items="${ list }">
             <tr>
-              <td class="t01">${ dto.news_idx }</td>
-              <td class="t02"><a href="community02_view.do?news_idx=${ dto.news_idx }">${ dto.news_title }</a></td>
-              <td>${ dto.news_date }</td>
-              <td>${ dto.news_date }</td>
-              <td>${ dto.news_date }</td>
-              <td id="buttons" style="display: flex; flex-direction: column; align-items: center;">
+              <td><img alt="" src="${ dto.item_img }"></td>
+              <td>${ dto.item_nm }</td>
+              <td>${ dto.price }</td>
+              <td>판매량</td>
+              <td>${ dto.stock }</td>
+              <td id="buttons" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100px;">
                 <button id="btn1">변경</button>
                 <button id="btn2">삭제</button>
               </td>

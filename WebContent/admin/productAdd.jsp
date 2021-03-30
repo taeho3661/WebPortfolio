@@ -124,33 +124,33 @@
   <div class="wrap">
     <div class="aside">
       <a href="memberList.do">회원 목록</a>
-      <a href="productList.jsp">상품 목록</a>
-      <a href="productAdd.jsp" id="selected">상품 등록</a>
-      <a href="orderList.jsp">주문 목록</a>
-      <a href="productQna.jsp">문의 목록</a>
+      <a href="productList.do">상품 목록</a>
+      <a href="productAdd.do" id="selected">상품 등록</a>
+      <a href="orderList.do">주문 목록</a>
+      <a href="productQna.do">문의 목록</a>
     </div>
     <div class="section">
       <div class="sectionTitle">
         <h1>상품 등록</h1>
       </div>
       <table class="table">
-        <form action="productAdd.do" method="post">
+        <form action="productAddUpdate.do" method="post">
           <tr>
             <td>상품명</td>
-            <td><input type="text" name ="product_name" placeholder="상품명을 입력해주세요." class="inputBox"></td>
+            <td><input type="text" name ="item_id" placeholder="상품명을 입력해주세요." class="inputBox"></td>
           </tr>
           <tr>
             <td>판매가</td>
-            <td><input type="text" name ="product_price" placeholder="상품 가격을 입력해주세요." class="inputBox"></td>
+            <td><input type="text" name ="price" placeholder="상품 가격을 입력해주세요." class="inputBox"></td>
           </tr>
           <tr>
             <td>재고</td>
-            <td><input type="text" name ="product_count" placeholder="상품 갯수를 입력해주세요." class="inputBox"></td>
+            <td><input type="text" name ="stock" placeholder="상품 갯수를 입력해주세요." class="inputBox"></td>
           </tr>
           <tr>
             <td>내용</td>
             <!-- <td><input type="textarea" name ="product_info" placeholder="세부 내용을 입력해주세요." class="inputBox"></td> -->
-            <td><textarea name ="product_info" placeholder="세부 내용을 입력해주세요." id="productAddTextarea"></textarea></td>
+            <td><textarea name ="con_img" placeholder="세부 내용을 입력해주세요." id="productAddTextarea"></textarea></td>
           </tr>
           <tr>
             <td></td>

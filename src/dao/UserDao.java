@@ -28,13 +28,9 @@ public class UserDao {
 			
 	        String query = "select * from tb_user order by user_no desc"; // 정렬시켜놓음	        
 			rs = stmt.executeQuery(query);			// 쿼리문 실행
-			
-			System.out.println("while문 들어가기전");
-			
+						
 			while( rs.next() ) 
-			{
-				System.out.println("while문 들어옴 rs.next()");
-				
+			{				
 	        	int user_no = rs.getInt("user_no");
 	            String user_id = rs.getString("user_id");
 	            String user_pw = rs.getString("user_pw");

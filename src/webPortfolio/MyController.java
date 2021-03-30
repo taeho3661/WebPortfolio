@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ItemDao;
 import dao.UserDao;
+import dto.ItemDto;
 import dto.UserDto;
 
 
@@ -52,13 +54,40 @@ public class MyController extends HttpServlet{
 			response.sendRedirect("/WebPortfolio/admin/memberList.do");
 		}
 		
-		//memberList
+		//memberList 회원 목록
 		else if (command.equals("memberList.do"))
 		{
 			ArrayList<UserDto> list = UserDao.list();
 			request.setAttribute("list", list);
 			
 			jspPage = "/admin/memberList.jsp";
+		}
+		
+		//productList 상품 목록
+		else if (command.equals("productList.do"))
+		{
+			ArrayList<ItemDto> list = ItemDao.list();
+			request.setAttribute("list", list);
+			
+			jspPage = "/admin/productList.jsp";
+		}
+		
+		//productAdd 상품 등록
+		else if (command.equals("productAdd.do"))
+		{
+			jspPage = "/admin/productAdd.jsp";
+		}
+		else if (command.equals("productAddUpdate.do"))
+		{
+			System.out.println("123123123");
+			String item_id = request.getParameter("item_id");
+			int price = Integer.parseInt(request.getParameter("price"));
+			int stock = Integer.parseInt(request.getParameter("stock"));
+			String con_img = request.getParameter("con_img");
+			
+			ItemDao.add(item_id, price, stock, con_img);
+			
+			response.sendRedirect("productList.do");
 		}
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////

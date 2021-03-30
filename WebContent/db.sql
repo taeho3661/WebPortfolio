@@ -44,3 +44,26 @@ values (tb_user_seq.nextval, '아이디3', '비밀번호3', '이름3',
 123, '기본주소3', '상세주소3', '010', 1111, 3333, 
 '메일3@gmail.com', 1, 0, 0, 0, 1);
 --
+--
+--
+--
+--상품데이터
+drop table  tb_item;
+create table  tb_item(
+	item_id      	number(4) primary key,
+    item_nm			varchar2(40),
+    price       	number(20),
+    stock       	number(20),
+    item_img  		varchar2(200),    
+    de_fee    		number(20),
+    con_img     	varchar2(200)
+);
+
+drop sequence tb_item_seq;
+create sequence tb_item_seq;
+
+--item 샘플
+insert into tb_item(item_id, item_nm, price, stock, item_img, de_fee, con_img) 
+values (tb_item_seq.nextval, '샌드위치', 50000, 100, 'https://ifh.cc/g/SkXbo6.jpg', 3000, 'https://ifh.cc/g/xt20xS.jpg');
+insert into tb_item(item_id, item_nm, price, stock, item_img, de_fee, con_img) 
+values (tb_item_seq.nextval, '아이스크림와플', 50000, 100, 'https://ifh.cc/g/uPjOSq.jpg', 3000, null);

@@ -100,10 +100,10 @@
   <div class="wrap">
     <div class="aside">
       <a href="memberList.do">회원 목록</a>
-      <a href="productList.jsp">상품 목록</a>
-      <a href="productAdd.jsp">상품 등록</a>
-      <a href="orderList.jsp" id="selected">주문 목록</a>
-      <a href="productQna.jsp">문의 목록</a>
+      <a href="productList.do">상품 목록</a>
+      <a href="productAdd.do">상품 등록</a>
+      <a href="orderList.do" id="selected">주문 목록</a>
+      <a href="productQna.do">문의 목록</a>
     </div>
     <div class="section">
       <div class="sectionTitle">
