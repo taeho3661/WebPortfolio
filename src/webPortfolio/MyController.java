@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.BilDao;
 import dao.ItemDao;
 import dao.UserDao;
+import dto.BilDto;
 import dto.ItemDto;
+import dto.OrderDto;
 import dto.UserDto;
 
 
@@ -88,6 +91,24 @@ public class MyController extends HttpServlet{
 			ItemDao.add(item_id, price, stock, con_img);
 			
 			response.sendRedirect("productList.do");
+		}
+		
+		//orderList 주문 목록
+		else if (command.equals("orderList.do"))
+		{
+			ArrayList<OrderDto> list = BilDao.list();
+			request.setAttribute("list", list);
+			
+			jspPage = "/admin/orderList.jsp";
+		}
+		
+		//productQna 문의 목록
+		else if (command.equals("productQna.do"))
+		{
+			//ArrayList<ItemDto> list = ItemDao.list();
+			//request.setAttribute("list", list);
+			
+			jspPage = "/admin/productQna.jsp";
 		}
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////

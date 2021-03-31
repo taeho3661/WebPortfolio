@@ -1,5 +1,6 @@
 -- 관리자모드부터 만들어보자
-
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 --회원데이터
 drop table tb_user;
 create table tb_user(
@@ -24,7 +25,7 @@ create table tb_user(
 drop sequence tb_user_seq;
 create sequence tb_user_seq;
 
---회원 샘플
+-- 샘플 --
 insert into tb_user(user_no, user_id, user_pw, user_nm, 
 post, adr1, adr2, phone1, phone2, phone3, 
 email, email_yn, score, rank, login_type, del_yn) 
@@ -43,10 +44,8 @@ email, email_yn, score, rank, login_type, del_yn)
 values (tb_user_seq.nextval, '아이디3', '비밀번호3', '이름3', 
 123, '기본주소3', '상세주소3', '010', 1111, 3333, 
 '메일3@gmail.com', 1, 0, 0, 0, 1);
---
---
---
---
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 --상품데이터
 drop table  tb_item;
 create table  tb_item(
@@ -62,8 +61,90 @@ create table  tb_item(
 drop sequence tb_item_seq;
 create sequence tb_item_seq;
 
---item 샘플
+--샘플--
 insert into tb_item(item_id, item_nm, price, stock, item_img, de_fee, con_img) 
 values (tb_item_seq.nextval, '샌드위치', 50000, 100, 'https://ifh.cc/g/SkXbo6.jpg', 3000, 'https://ifh.cc/g/xt20xS.jpg');
 insert into tb_item(item_id, item_nm, price, stock, item_img, de_fee, con_img) 
 values (tb_item_seq.nextval, '아이스크림와플', 50000, 100, 'https://ifh.cc/g/uPjOSq.jpg', 3000, null);
+
+-- 테스트 코드
+select * from tb_item;
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+--카트
+drop table  tb_cart;
+create table  tb_cart(
+	cart_id      	number(4) primary key,
+    user_id			varchar2(40),
+    item_id       	number(20),
+    amount       	number(20),
+    bil_id  		number(20)
+);
+
+drop sequence tb_cart_seq;
+create sequence tb_cart_seq;
+
+--샘플--
+insert into tb_cart(cart_id, user_id, item_id, amount, bil_id) 
+values (tb_cart_seq.nextval, '아이디1', 1, 10, 1);
+insert into tb_cart(cart_id, user_id, item_id, amount, bil_id) 
+values (tb_cart_seq.nextval, '아이디1', 1, 10, 1);
+insert into tb_cart(cart_id, user_id, item_id, amount, bil_id) 
+values (tb_cart_seq.nextval, '아이디2', 2, 30, 2);
+insert into tb_cart(cart_id, user_id, item_id, amount, bil_id) 
+values (tb_cart_seq.nextval, '아이디3', 1, 10, 3);
+
+-- 테스트 코드
+select * from tb_cart;
+
+-- todo:: 여긴 아직 수정필요
+select i.item_img
+       , i.item_nm /* 아이템명 */
+       , c.amount, i.de_fee, i.price
+from tb_cart c
+, tb_user u
+, tb_item i
+where c.user_id = u.user_id
+  and c.item_id = i.item_id;
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+-- 주문목록만들기
+drop table  tb_bil;
+create table  tb_bil(
+	bil_id      	number(4) primary key,
+    user_id			varchar2(40),
+    order_state     varchar2(40),
+    receive_nm      varchar2(40),
+    receive_tel  	number(20),    
+    post    		number(20),
+    adr1     	    varchar2(100),
+    adr2     	    varchar2(100),
+    ship_memo     	varchar2(200),
+    total_price     number(20),
+    order_date      date default sysdate
+);
+
+drop sequence tb_bil_seq;
+create sequence tb_bil_seq;
+
+-- -- -- 샘플 -- -- --
+insert into tb_bil(bil_id, user_id, order_state, receive_nm, receive_tel, post, adr1, adr2, ship_memo, total_price, order_date)
+values (tb_bil_seq.nextval, '아이디1', 1, '수령인', 01099990000, null, null, null, null, null, sysdate);
+insert into tb_bil(bil_id, user_id, order_state, receive_nm, receive_tel, post, adr1, adr2, ship_memo, total_price, order_date)
+values (tb_bil_seq.nextval, '아이디2', 1, '수령인', 01099991111, null, null, null, null, null, sysdate);
+insert into tb_bil(bil_id, user_id, order_state, receive_nm, receive_tel, post, adr1, adr2, ship_memo, total_price, order_date)
+values (tb_bil_seq.nextval, '아이디3', 1, '수령인', 01099992222, null, null, null, null, null, sysdate);
+
+-- 테스트 코드
+select * from tb_bil;
+
+select b.bil_id
+, b.order_date
+, b.user_id
+, i.item_nm
+, b.order_state
+from tb_bil b
+, tb_cart c
+, tb_item i
+where b.bil_id = c.bil_id
+  and c.item_id = i.item_id;

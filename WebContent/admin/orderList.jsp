@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -122,11 +123,11 @@
         <!-- tr -->
         <c:forEach var="dto" items="${ list }">
             <tr>
-              <td>${ dto.news_idx }</td>
-              <td>${ dto.news_title }</td>
-              <td>${ dto.news_date }</td>
-              <td>${ dto.news_date }</td>
-              <td>${ dto.news_date }</td>
+              <td>${ dto.bil_id }</td>
+              <td>${ dto.order_date }</td>
+              <td>${ dto.user_id }</td>
+              <td>${ dto.item_nm }</td>
+              <td>${ dto.order_state }</td>
               <td><button id="orderListDeliveryButton" style="margin: 0 auto;">배송출발</button></td>
             </tr>
         </c:forEach>
