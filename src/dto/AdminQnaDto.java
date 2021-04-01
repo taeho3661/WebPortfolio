@@ -7,6 +7,7 @@ public class AdminQnaDto {
     private String 	board_nm;
     private String 	writer;
 	private Date 	write_date;
+	private int		board_no;
 	
 	
 	//생성자
@@ -14,18 +15,27 @@ public class AdminQnaDto {
 		
 	}
 	
-	public AdminQnaDto(String item_nm, String board_nm, String writer, Date write_date) {
+	public AdminQnaDto(String item_nm, String board_nm, String writer, Date write_date, int board_no) {
 		super();
 		this.item_nm = item_nm;
 		this.board_nm = board_nm;
 		this.writer = writer;
 		this.write_date = write_date;
+		this.board_no = board_no;
 	}
 
 	
 	//G,S	
 	public String getItem_nm() {
 		return item_nm;
+	}
+
+	public int getBoard_no() {
+		return board_no;
+	}
+
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
 	}
 
 	public void setItem_nm(String item_nm) {

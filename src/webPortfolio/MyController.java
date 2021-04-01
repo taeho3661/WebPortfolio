@@ -113,6 +113,15 @@ public class MyController extends HttpServlet{
 			jspPage = "/admin/productQna.jsp";
 		}
 		
+		//qnaReply 문의 - 답글
+		else if (command.equals("qnaReply.do"))
+		{
+			System.out.println(request.getParameter("board_no"));
+			
+			jspPage = "/admin/qnaReply.jsp";
+		}
+		
+		
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		if(!jspPage.equals(""))		// jsp페이지가 비어있지 않다면 
 		{

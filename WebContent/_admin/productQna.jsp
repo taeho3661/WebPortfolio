@@ -110,6 +110,7 @@
       <div class="sectionTitle">
         <h1>문의 목록</h1>
       </div>
+       <form action="qnaReply.do" method="post">
       <table class="table">
         <!-- th -->
         <tr>
@@ -118,21 +119,23 @@
           <th>문의자</th>
           <th>날짜</th>
           <th></th>
-        </tr>
+        </tr>	
         <!-- tr -->
-        <c:forEach var="dto" items="${ list }">
-            <tr>
-              <td>${ dto.item_nm }</td>
-              <td>${ dto.board_nm }</td>
-              <td>${ dto.writer }</td>
-              <td>${ dto.write_date }</td>
-              <td><button id="productQnaReplyButton" onclick="javascript:replyButton();">답변</button></td>
-            </tr>
-            <%-- <a href="content_view.do?board_idx=${ dto.board_idx }">
-					${ dto.board_title }</a> --%>
-        </c:forEach>
-		
+	        <c:forEach var="dto" items="${ list }">
+	            <input type="hidden" name="board_no" value="${dto.board_no}"/>
+	            <tr>
+	              <td>${ dto.item_nm }</td>
+	              <td>${ dto.board_nm }</td>
+	              <td>${ dto.writer }</td>
+	              <td>${ dto.write_date }</td>
+	              <%-- <td>${ dto.board_no }</td> --%>
+	              <td><input type="submit" value="답변" id="productQnaReplyButton" onclick="javascript:replyButton();"></td>
+	            </tr>
+	            <%-- <a href="content_view.do?board_idx=${ dto.board_idx }">
+						${ dto.board_title }</a> --%>
+	        </c:forEach>
       </table>
+	</form>
     </div>
   </div>
 </body>
@@ -141,6 +144,6 @@
 <script>
 	function replyButton()
 	{
-		window.open("qnaReply.jsp", "새창", "width=780, height=850, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+		window.open("qnaReply.do", "새창", "width=780, height=850, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
 	}
 </script>
