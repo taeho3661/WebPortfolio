@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.BilDao;
+import dao.BoardDao;
 import dao.ItemDao;
 import dao.UserDao;
+import dto.AdminQnaDto;
 import dto.BilDto;
 import dto.ItemDto;
 import dto.OrderDto;
@@ -105,8 +107,8 @@ public class MyController extends HttpServlet{
 		//productQna 문의 목록
 		else if (command.equals("productQna.do"))
 		{
-			//ArrayList<ItemDto> list = ItemDao.list();
-			//request.setAttribute("list", list);
+			ArrayList<AdminQnaDto> list = BoardDao.list();
+			request.setAttribute("list", list);
 			
 			jspPage = "/admin/productQna.jsp";
 		}
