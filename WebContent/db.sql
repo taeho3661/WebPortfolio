@@ -148,3 +148,38 @@ from tb_bil b
 , tb_item i
 where b.bil_id = c.bil_id
   and c.item_id = i.item_id;
+  
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+-- 게시판 DB
+drop table  tb_board;
+create table  tb_board(
+	board_no     	number(4) primary key,
+    board_kind		number(4),  -- 1:상품후기 2:상품문의
+    board_nm        varchar2(40),
+    board_con       varchar2(200),
+    writer  	    varchar2(20),    
+    write_date    	date default sysdate,
+    hit     	    number(4) default 0,
+    secret_yn     	varchar2(1), -- 0:비밀 1:공개
+    item_id     	number(4)
+);
+
+drop sequence tb_board_seq;
+create sequence tb_board_seq;
+
+select * from tb_board;
+
+-- -- -- 샘플 -- -- --
+insert into tb_board(board_no, board_kind, board_nm, board_con, writer, write_date, secret_yn, item_id)
+values (tb_board_seq.nextval, 2, '샌드위치 맛있나요?', '샌드위치 얼마나 맛있나요?', '아이디1', sysdate, 1, 1);
+insert into tb_board(board_no, board_kind, board_nm, board_con, writer, write_date, secret_yn, item_id)
+values (tb_board_seq.nextval, 2, '문의입니다.', '테스트~~~~~', '아이디1', sysdate, 1, 1);
+insert into tb_board(board_no, board_kind, board_nm, board_con, writer, write_date, secret_yn, item_id)
+values (tb_board_seq.nextval, 1, '후기입니다.', '후기내용입니다~', '아이디2', sysdate, 1, 1);
+
+
+--테스트
+select i.item_nm, q.board_nm, q.writer, q.write_date from tb_item i, tb_board q
+where i.item_id = q.item_id;
+

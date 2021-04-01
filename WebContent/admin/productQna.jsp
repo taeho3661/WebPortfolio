@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
 <!DOCTYPE html>
 <html lang="en">
@@ -121,12 +122,14 @@
         <!-- tr -->
         <c:forEach var="dto" items="${ list }">
             <tr>
-              <td>${ dto.news_idx }</td>
-              <td>${ dto.news_title }</td>
-              <td>${ dto.news_date }</td>
-              <td>${ dto.news_date }</td>
+              <td>${ dto.item_nm }</td>
+              <td>${ dto.board_nm }</td>
+              <td>${ dto.writer }</td>
+              <td>${ dto.write_date }</td>
               <td><button id="productQnaReplyButton" onclick="javascript:replyButton();">답변</button></td>
             </tr>
+            <%-- <a href="content_view.do?board_idx=${ dto.board_idx }">
+					${ dto.board_title }</a> --%>
         </c:forEach>
 		
       </table>
